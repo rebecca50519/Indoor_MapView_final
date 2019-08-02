@@ -1,5 +1,6 @@
 package com.example.indoor_mapview;
 
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.PointF;
@@ -15,8 +16,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.onlylemi.mapview.library.MapView;
 import com.onlylemi.mapview.library.MapViewListener;
 import com.onlylemi.mapview.library.layer.LocationLayer;
-
-import java.io.IOException;
 
 public class LocationLayerActivity extends AppCompatActivity implements SensorEventListener {
 
@@ -35,13 +34,10 @@ public class LocationLayerActivity extends AppCompatActivity implements SensorEv
 
         mapView = (MapView) findViewById(R.id.mapview);
 
-        Bitmap bitmap = null;
-        try {
-            bitmap = BitmapFactory.decodeStream(getAssets().open("pic.png"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        mapView.loadMap(bitmap);
+        Resources res=getResources();
+
+        Bitmap bmp=BitmapFactory.decodeResource(res, R.drawable.pic);
+        mapView.loadMap(bmp);
         mapView.setMapViewListener(new MapViewListener() {
             @Override
             public void onMapLoadSuccess() {
